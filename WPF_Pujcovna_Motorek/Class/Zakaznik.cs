@@ -20,5 +20,12 @@ namespace WPF_Pujcovna_Motorek.Class
             Prijmeni = prijmeni;
             DatumNarozeni = datumNarozeni;
         }
+
+        public Zakaznik(int id, string jmeno, string prijmeni)
+        {
+            Id = id;
+            Jmeno = jmeno;
+            Prijmeni = prijmeni;
+        }
     }
 }
