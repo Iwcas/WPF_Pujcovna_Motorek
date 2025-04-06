@@ -7,6 +7,123 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="287*"/>
+            <ColumnDefinition Width="933*"/>
+        </Grid.ColumnDefinitions>
+        <TabControl Grid.ColumnSpan="2">
+            <TabItem Header="Zákazníci">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="161.088"/>
+                        <ColumnDefinition Width="360"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Menu FontSize="16" Grid.ColumnSpan="3" Grid.Row="0">
+                        <MenuItem Header="Program">
+                            <MenuItem x:Name="menuZakazniciUkoncit" Header="Ukončit"/>
+                        </MenuItem>
+                        <MenuItem Header="Data">
+                            <MenuItem Header="Vložit"/>
+                            <MenuItem Header="Editovat"/>
+                            <MenuItem Header="Smazat"/>
+                        </MenuItem>
+                    </Menu>
+                    <ListView x:Name="lsvMotorky" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="3">
+                        <ListView.View>
+                            <GridView>
+                                <GridViewColumn Header="Id" Width="40" DisplayMemberBinding="{Binding Id}"/>
+                                <GridViewColumn Header="Nazev" Width="80" DisplayMemberBinding="{Binding Nazev}"/>
+                                <GridViewColumn Header="Model" Width="100" DisplayMemberBinding="{Binding Model}"/>
+                                <GridViewColumn Header="Najezd" Width="60" DisplayMemberBinding="{Binding Najezd}"/>
+                                <GridViewColumn Header="Nadrz" Width="50" DisplayMemberBinding="{Binding Aktualni_Nadrz}"/>
+                                <GridViewColumn Header="Rok Vyroby" Width="90" DisplayMemberBinding="{Binding RokVyroby}"/>
+                                <GridViewColumn Header="Barva" Width="50" DisplayMemberBinding="{Binding Barva}"/>
+                                <GridViewColumn Header="Volny" Width="50" DisplayMemberBinding="{Binding Volny}"/>
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
+                    <TabControl Grid.Column="2" Grid.Row="1">
+                        <TabItem Header="Vložení">
+                            <Grid Background="#FFE5E5E5">
+                                <StackPanel>
+                                    <TextBlock TextWrapping="Wrap" Margin="1" Text="Název"/>
+                                    <TextBox x:Name="txtNazevVlozit" TextWrapping="Wrap" Margin="1" Text="Honda"/>
+                                    <TextBlock TextWrapping="Wrap" Margin="1" Text="Model"/>
+                                    <TextBox x:Name="txtModelVlozit" TextWrapping="Wrap" Margin="1" Text="CBR 1000RR FireBlade"/>
+                                    <TextBlock TextWrapping="Wrap" Margin="1" Text="Najezd"/>
+                                    <TextBox x:Name="txtNajezdVlozit" TextWrapping="Wrap" Margin="1" Text="5000"/>
+                                    <TextBlock TextWrapping="Wrap" Margin="1" Text="Max Nadrz"/>
+                                    <TextBox x:Name="txtMaxNadrzVlozit" TextWrapping="Wrap" Margin="1" Text="10"/>
+                                    <TextBlock TextWrapping="Wrap" Margin="1" Text="Rok Vyroby"/>
+                                    <TextBox x:Name="txtRokVyrobyVlozit" TextWrapping="Wrap" Margin="1" Text="1/1/2000"/>
+                                    <TextBlock TextWrapping="Wrap" Margin="1" Text="Barva"/>
+                                    <TextBox x:Name="txtBarvaVlozit" TextWrapping="Wrap" Margin="1" Text="Cervena"/>
+                                </StackPanel>
+                            </Grid>
+                        </TabItem>
+                        <TabItem Header="Editace">
+                            <Grid Background="#FFE5E5E5">
+                                <StackPanel>
+                                    <TextBlock TextWrapping="Wrap" Margin="1" Text="Název"/>
+                                    <TextBox x:Name="txtNazevEditace" TextWrapping="Wrap" Margin="1" Text="Honda"/>
+                                    <TextBlock TextWrapping="Wrap" Margin="1" Text="Model"/>
+                                    <TextBox x:Name="txtModelEditace" TextWrapping="Wrap" Margin="1" Text="CBR 1000RR FireBlade"/>
+                                    <TextBlock TextWrapping="Wrap" Margin="1" Text="Najezd"/>
+                                    <TextBox x:Name="txtNajezdEditace" TextWrapping="Wrap" Margin="1" Text="5000"/>
+                                    <TextBlock TextWrapping="Wrap" Margin="1" Text="Max Nadrz"/>
+                                    <TextBox x:Name="txtMaxNadrzEditace" TextWrapping="Wrap" Margin="1" Text="10"/>
+                                    <TextBlock TextWrapping="Wrap" Margin="1" Text="Rok Vyroby"/>
+                                    <TextBox x:Name="txtRokVyrobyEditace" TextWrapping="Wrap" Margin="1" Text="1/1/2000"/>
+                                    <TextBlock TextWrapping="Wrap" Margin="1" Text="Barva"/>
+                                    <TextBox x:Name="txtBarvaEditace" TextWrapping="Wrap" Margin="1" Text="Cervena"/>
+                                </StackPanel>
+                            </Grid>
+                        </TabItem>
+                    </TabControl>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Motorky">
+                <Grid>
+                    
+                </Grid>
+            </TabItem>
+            <TabItem Header="Vypůjčky" IsSelected="True">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="850"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Menu FontSize="16" Grid.ColumnSpan="3" Grid.Row="0">
+                        <MenuItem Header="Program">
+                            <MenuItem x:Name="menuVypujckyUkoncit" Header="Ukončit"/>
+                        </MenuItem>
+                        <MenuItem Header="Data">
+                            <MenuItem Header="Vypůjčit Motorku"/>
+                            <MenuItem Header="Editovat Vypůjčku"/>
+                        </MenuItem>
+                    </Menu>
+                    <ListView x:Name="lsvVypujcky" Grid.Column="0" Grid.Row="1">
+                        <ListView.View>
+                            <GridView>
+                                <GridViewColumn Width="30" DisplayMemberBinding="{Binding Id}">
+                                    <GridViewColumn.Header>
+                                        <GridViewColumnHeader x:Name="colId">Id</GridViewColumnHeader>
+                                    </GridViewColumn.Header>
+                                </GridViewColumn>
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
+                </Grid>
+            </TabItem>
+        </TabControl>
     </Grid>
 </Window>
