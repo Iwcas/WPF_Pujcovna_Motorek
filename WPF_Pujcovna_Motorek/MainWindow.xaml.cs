@@ -70,5 +70,15 @@ namespace WPF_Pujcovna_Motorek
         {
 
         }
+
+        private void BtnEditovatVypujcku_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void BtnVlozitVypujcku_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

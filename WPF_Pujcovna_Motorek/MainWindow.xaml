@@ -152,7 +152,7 @@
                                 <StackPanel>
                                     <TextBlock TextWrapping="Wrap" Margin="1" Text="Čtenaři"/>
                                     <ComboBox x:Name="cmbZakazniciFiltr" ItemsSource="{Binding Zakaznici}" DisplayMemberPath="Prijmeni" SelectionChanged="cmbZakazniciFiltr_SelectionChanged">
-                                        
+
                                     </ComboBox>
                                     <ListView x:Name="lsvZakazniciVypujcky" MaxHeight="300">
                                         <ListView.View>
@@ -164,7 +164,25 @@
                                         </ListView.View>
                                     </ListView>
                                     <TextBlock TextWrapping="Wrap" Margin="1" Text="Motorky"/>
-                                    
+                                    <ListView x:Name="lsvMotorkyVypujcky" MaxHeight="300">
+                                        <ListView.View>
+                                            <GridView>
+                                                <GridViewColumn Header="Id" Width="30" DisplayMemberBinding="{Binding Id}"/>
+                                                <GridViewColumn Header="nazev" Width="30" DisplayMemberBinding="{Binding nazev}"/>
+                                                <GridViewColumn Header="Model" Width="30" DisplayMemberBinding="{Binding Model}"/>
+                                                <GridViewColumn Header="MaxNadrz" Width="30" DisplayMemberBinding="{Binding MaxNadrz}"/>
+                                                <GridViewColumn Header="RokVyroby" Width="30" DisplayMemberBinding="{Binding RokVyroby}"/>
+                                                <GridViewColumn Header="Barva" Width="30" DisplayMemberBinding="{Binding Barva}"/>
+                                            </GridView>
+                                        </ListView.View>
+                                    </ListView>
+                                    <TextBlock Margin="1" Text="Vypůjčeno            Vráceno" TextAlignment="Justify"/>
+                                    <StackPanel Orientation="Horizontal">
+                                        <Calendar x:Name="CalVypujceno"/>
+                                        <Calendar x:Name="CalVraceno"/>
+                                    </StackPanel>
+                                    <Button x:Name="BtnEditovatVypujcku" Content="Editovat Vypujcku" Margin="1" Click="BtnEditovatVypujcku_Click"></Button>
+                                    <Button x:Name="BtnVlozitVypujcku" Content="vypujcit Motorku" Margin="1" Click="BtnVlozitVypujcku_Click" ></Button>
                                 </StackPanel>
                             </Grid>
                         </TabItem>
