@@ -25,7 +25,7 @@
                     </Grid.ColumnDefinitions>
                     <Menu FontSize="16" Grid.ColumnSpan="3" Grid.Row="0">
                         <MenuItem Header="Program">
-                            <MenuItem x:Name="menuZakazniciUkoncit" Header="Ukončit"/>
+                            <MenuItem x:Name="menuZakazniciUkoncit" Header="Ukončit" Click="menuZakazniciUkoncit_Click"/>
                         </MenuItem>
                         <MenuItem Header="Data">
                             <MenuItem Header="Vložit"/>
@@ -89,7 +89,6 @@
             </TabItem>
             <TabItem Header="Motorky">
                 <Grid>
-                    
                 </Grid>
             </TabItem>
             <TabItem Header="Vypůjčky" IsSelected="True">
@@ -104,24 +103,72 @@
                     </Grid.ColumnDefinitions>
                     <Menu FontSize="16" Grid.ColumnSpan="3" Grid.Row="0">
                         <MenuItem Header="Program">
-                            <MenuItem x:Name="menuVypujckyUkoncit" Header="Ukončit"/>
+                            <MenuItem x:Name="menuVypujckyUkoncit" Header="Ukončit" Click="menuVypujckyUkoncit_Click"/>
                         </MenuItem>
                         <MenuItem Header="Data">
-                            <MenuItem Header="Vypůjčit Motorku"/>
-                            <MenuItem Header="Editovat Vypůjčku"/>
+                            <MenuItem Header="Vypůjčit Motorku" Click="MenuItem_Click"/>
+                            <MenuItem Header="Editovat Vypůjčku" Click="MenuItem_Click_1"/>
                         </MenuItem>
                     </Menu>
-                    <ListView x:Name="lsvVypujcky" Grid.Column="0" Grid.Row="1">
+                    <ListView x:Name="lsvVypujcky" Grid.Column="0" Grid.Row="1" SelectionChanged="lsvVypujcky_SelectionChanged">
                         <ListView.View>
                             <GridView>
                                 <GridViewColumn Width="30" DisplayMemberBinding="{Binding Id}">
                                     <GridViewColumn.Header>
-                                        <GridViewColumnHeader x:Name="colId">Id</GridViewColumnHeader>
+                                        <GridViewColumnHeader x:Name="colId" Click="colId_Click">Id</GridViewColumnHeader>
+                                    </GridViewColumn.Header>
+                                </GridViewColumn>
+                                <GridViewColumn Width="120" DisplayMemberBinding="{Binding JmenoZakaznika}">
+                                    <GridViewColumn.Header>
+                                        <GridViewColumnHeader x:Name="ColJmeno" Click="ColJmeno_Click">Jmeno</GridViewColumnHeader>
+                                    </GridViewColumn.Header>
+                                </GridViewColumn>
+                                <GridViewColumn Width="120" DisplayMemberBinding="{Binding PrijmeniZakaznika}">
+                                    <GridViewColumn.Header>
+                                        <GridViewColumnHeader x:Name="ColPrijmeni" Click="ColPrijmeni_Click">Prijmeni</GridViewColumnHeader>
+                                    </GridViewColumn.Header>
+                                </GridViewColumn>
+                                <GridViewColumn Width="120" DisplayMemberBinding="{Binding MotorkaZakaznika}">
+                                    <GridViewColumn.Header>
+                                        <GridViewColumnHeader x:Name="ColMotorka" Click="ColMotorka_Click">Motorka</GridViewColumnHeader>
+                                    </GridViewColumn.Header>
+                                </GridViewColumn>
+                                <GridViewColumn Width="120" DisplayMemberBinding="{Binding DatumVypujceni, StringFormat={}{0:dd. MM. yyyy}}">
+                                    <GridViewColumn.Header>
+                                        <GridViewColumnHeader x:Name="ColPujceno" Click="ColMotorka_Click">Pujceno</GridViewColumnHeader>
+                                    </GridViewColumn.Header>
+                                </GridViewColumn>
+                                <GridViewColumn Width="120" DisplayMemberBinding="{Binding DatumVraceni, StringFormat={}{0:dd. MM. yyyy}}">
+                                    <GridViewColumn.Header>
+                                        <GridViewColumnHeader x:Name="ColVraceni" Click="ColMotorka_Click">Vraceno</GridViewColumnHeader>
                                     </GridViewColumn.Header>
                                 </GridViewColumn>
                             </GridView>
                         </ListView.View>
                     </ListView>
+                    <TabControl Grid.Column="2" Grid.Row="1">
+                        <TabItem Header="Vložení a Editace">
+                            <Grid Background="#FFE5E5E5">
+                                <StackPanel>
+                                    <TextBlock TextWrapping="Wrap" Margin="1" Text="Čtenaři"/>
+                                    <ComboBox x:Name="cmbZakazniciFiltr" ItemsSource="{Binding Zakaznici}" DisplayMemberPath="Prijmeni" SelectionChanged="cmbZakazniciFiltr_SelectionChanged">
+                                        
+                                    </ComboBox>
+                                    <ListView x:Name="lsvZakazniciVypujcky" MaxHeight="300">
+                                        <ListView.View>
+                                            <GridView>
+                                                <GridViewColumn Header="Id" Width="30" DisplayMemberBinding="{Binding Id}"/>
+                                                <GridViewColumn Header="Jmeno" Width="120" DisplayMemberBinding="{Binding Jmeno}"/>
+                                                <GridViewColumn Header="Prijmeni" Width="120" DisplayMemberBinding="{Binding Prijmeni}"/>
+                                            </GridView>
+                                        </ListView.View>
+                                    </ListView>
+                                    <TextBlock TextWrapping="Wrap" Margin="1" Text="Motorky"/>
+                                    
+                                </StackPanel>
+                            </Grid>
+                        </TabItem>
+                    </TabControl>
                 </Grid>
             </TabItem>
         </TabControl>

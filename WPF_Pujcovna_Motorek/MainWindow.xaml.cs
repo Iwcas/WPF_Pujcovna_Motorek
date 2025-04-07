@@ -20,5 +20,55 @@ namespace WPF_Pujcovna_Motorek
         {
             InitializeComponent();
         }
+
+        private void colId_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void ColJmeno_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void ColPrijmeni_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void ColMotorka_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void cmbZakazniciFiltr_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
+
+        private void menuZakazniciUkoncit_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void menuVypujckyUkoncit_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void MenuItem_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void MenuItem_Click_1(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void lsvVypujcky_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
     }
 }
