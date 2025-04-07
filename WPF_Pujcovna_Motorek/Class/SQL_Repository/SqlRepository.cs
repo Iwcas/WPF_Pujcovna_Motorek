@@ -111,5 +111,71 @@ namespace WPF_Pujcovna_Motorek.Class.SQL_Repository
             }
             return motorka;
         }
+
+        public Vypujcka VratJednuVypujcku(int Id)
+        {
+            Vypujcka vypujcka = null;
+            using (SqlConnection conn = new SqlConnection(Connection_String))
+            {
+                using (SqlCommand cmd = new SqlCommand("", conn))
+                {
+                    cmd.CommandText = $"select * from Vypujcky Where Id = {Id}";
+                    conn.Open();
+                    using(SqlDataReader dr = cmd.ExecuteReader())
+                    {
+                        while(dr.Read())
+                        {
+                            vypujcka = new Vypujcka(
+                                (int)dr["Id"],
+                                (int)dr["Id_Zakaznik"],
+                                (int)dr["Id_Motorka"],
+                                dr.GetDateTime("Pujceno"),
+                                !dr.IsDBNull("Vraceno") ? dr.GetDateTime("Vraceno") : null);
+                        }
+                    }
+                    conn.Close();
+                }
+            }
+
+            return vypujcka;
+        }
+        
+        public void VypujcitMotorku(int IdZakaznika, int IdMotorka, DateTime Pujceno)
+        {
+            using(SqlConnection conn =new SqlConnection(Connection_String))
+            {
+                using (SqlCommand cmd = new SqlCommand("", conn))
+                {
+                    cmd.CommandText = $"insert into Vypujcky (Id_Zakaznik, Id_Motorka, Pujceno)" +
+                        $"values (@IdZ, @IdM, @P);";
+                    cmd.Parameters.AddWithValue("IdZ", IdZakaznika);
+                    cmd.Parameters.AddWithValue("IdM", IdMotorka);
+                    cmd.Parameters.AddWithValue("P", Pujceno);
+                    conn.Open();
+                    cmd.ExecuteNonQuery();
+                    conn.Close();
+                }
+            }
+        }
+        public void EditovatMotorku(int Id, int IdZakaznik, int IdMotorka, DateTime Pujceno, DateTime Vraceno)
+        {
+            using(SqlConnection conn = new SqlConnection(Connection_String))
+            {
+                using(SqlCommand cmd = new SqlCommand("", conn))
+                {
+                    cmd.CommandText = $"update Vypujcky " +
+                        $"set Id_Zakaznik=@IdZ, Id_Motorka=@IdM, Pujceno=@P, Vraceno=@V " +
+                        $"where Id=@Id;";
+                    cmd.Parameters.AddWithValue("@Id", Id);
+                    cmd.Parameters.AddWithValue("@IdZ", IdZakaznik);
+                    cmd.Parameters.AddWithValue("@IdM", IdMotorka);
+                    cmd.Parameters.AddWithValue("@P", Pujceno);
+                    cmd.Parameters.AddWithValue("@V", Vraceno);
+                    conn.Open();
+                    cmd.ExecuteNonQuery();
+                    conn.Close();
+                }
+            }
+        }
     }
 }
