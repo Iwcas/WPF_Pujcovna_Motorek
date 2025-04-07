@@ -40,8 +40,6 @@
                                 <GridViewColumn Header="Nazev" Width="80" DisplayMemberBinding="{Binding Nazev}"/>
                                 <GridViewColumn Header="Model" Width="100" DisplayMemberBinding="{Binding Model}"/>
                                 <GridViewColumn Header="Najezd" Width="60" DisplayMemberBinding="{Binding Najezd}"/>
-                                <GridViewColumn Header="Nadrz" Width="50" DisplayMemberBinding="{Binding Aktualni_Nadrz}"/>
-                                <GridViewColumn Header="Rok Vyroby" Width="90" DisplayMemberBinding="{Binding RokVyroby}"/>
                                 <GridViewColumn Header="Barva" Width="50" DisplayMemberBinding="{Binding Barva}"/>
                                 <GridViewColumn Header="Volny" Width="50" DisplayMemberBinding="{Binding Volny}"/>
                             </GridView>
@@ -57,10 +55,6 @@
                                     <TextBox x:Name="txtModelVlozit" TextWrapping="Wrap" Margin="1" Text="CBR 1000RR FireBlade"/>
                                     <TextBlock TextWrapping="Wrap" Margin="1" Text="Najezd"/>
                                     <TextBox x:Name="txtNajezdVlozit" TextWrapping="Wrap" Margin="1" Text="5000"/>
-                                    <TextBlock TextWrapping="Wrap" Margin="1" Text="Max Nadrz"/>
-                                    <TextBox x:Name="txtMaxNadrzVlozit" TextWrapping="Wrap" Margin="1" Text="10"/>
-                                    <TextBlock TextWrapping="Wrap" Margin="1" Text="Rok Vyroby"/>
-                                    <TextBox x:Name="txtRokVyrobyVlozit" TextWrapping="Wrap" Margin="1" Text="1/1/2000"/>
                                     <TextBlock TextWrapping="Wrap" Margin="1" Text="Barva"/>
                                     <TextBox x:Name="txtBarvaVlozit" TextWrapping="Wrap" Margin="1" Text="Cervena"/>
                                 </StackPanel>
@@ -75,10 +69,6 @@
                                     <TextBox x:Name="txtModelEditace" TextWrapping="Wrap" Margin="1" Text="CBR 1000RR FireBlade"/>
                                     <TextBlock TextWrapping="Wrap" Margin="1" Text="Najezd"/>
                                     <TextBox x:Name="txtNajezdEditace" TextWrapping="Wrap" Margin="1" Text="5000"/>
-                                    <TextBlock TextWrapping="Wrap" Margin="1" Text="Max Nadrz"/>
-                                    <TextBox x:Name="txtMaxNadrzEditace" TextWrapping="Wrap" Margin="1" Text="10"/>
-                                    <TextBlock TextWrapping="Wrap" Margin="1" Text="Rok Vyroby"/>
-                                    <TextBox x:Name="txtRokVyrobyEditace" TextWrapping="Wrap" Margin="1" Text="1/1/2000"/>
                                     <TextBlock TextWrapping="Wrap" Margin="1" Text="Barva"/>
                                     <TextBox x:Name="txtBarvaEditace" TextWrapping="Wrap" Margin="1" Text="Cervena"/>
                                 </StackPanel>
@@ -170,8 +160,6 @@
                                                 <GridViewColumn Header="Id" Width="30" DisplayMemberBinding="{Binding Id}"/>
                                                 <GridViewColumn Header="nazev" Width="30" DisplayMemberBinding="{Binding nazev}"/>
                                                 <GridViewColumn Header="Model" Width="30" DisplayMemberBinding="{Binding Model}"/>
-                                                <GridViewColumn Header="MaxNadrz" Width="30" DisplayMemberBinding="{Binding MaxNadrz}"/>
-                                                <GridViewColumn Header="RokVyroby" Width="30" DisplayMemberBinding="{Binding RokVyroby}"/>
                                                 <GridViewColumn Header="Barva" Width="30" DisplayMemberBinding="{Binding Barva}"/>
                                             </GridView>
                                         </ListView.View>

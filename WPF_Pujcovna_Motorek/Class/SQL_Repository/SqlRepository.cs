@@ -56,5 +56,60 @@ namespace WPF_Pujcovna_Motorek.Class.SQL_Repository
             }
             return vypujcka;
         }
+
+        public List<Zakaznik> NactiZakaznika(string sloupecTrideni, bool sestupne, string hledani)
+        {
+            List<Zakaznik> zakaznik = new List<Zakaznik>();
+            zakaznik.Add(new Zakaznik(0, "", "Vše"));
+            using (SqlConnection conn = new SqlConnection(Connection_String))
+            {
+                using (SqlCommand cmd = new SqlCommand("", conn)) 
+                {
+                    cmd.CommandText = $"select * from Zakaznik";
+                    conn.Open();
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            zakaznik.Add(new Zakaznik(
+                                int.Parse(reader["Id"].ToString()),
+                                reader["Jmeno"].ToString(),
+                                reader["Prijmeni"].ToString()
+                                ));
+                        }
+                    }
+                    conn.Close();
+                }
+            }
+            return zakaznik;
+        }
+
+        public List<Motorka> NactiMotorky(string sloupecTrideni, bool sestupne, string hledani)
+        {
+            List<Motorka> motorka = new List<Motorka>();
+            using(SqlConnection conn = new SqlConnection(Connection_String))
+            {
+                using (SqlCommand cmd = new SqlCommand("", conn))
+                {
+                    cmd.CommandText = $"select * from Motorka";
+                    conn.Open();
+                    using (SqlDataReader dr = cmd.ExecuteReader())
+                    {
+                        while (dr.Read())
+                        {
+                            motorka.Add(new Motorka(
+                                int.Parse(dr["Id"].ToString()),
+                                dr["Nazev"].ToString(),
+                                dr["Model"].ToString(),
+                                int.Parse(dr["Najezd"].ToString()),
+                                int.Parse(dr["MaxNadrz"].ToString()),
+                                dr["Barva"].ToString()
+                                ));
+                        }
+                    }
+                }
+            }
+            return motorka;
+        }
     }
 }
