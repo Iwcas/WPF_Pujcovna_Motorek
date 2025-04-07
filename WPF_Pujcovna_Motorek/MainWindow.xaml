@@ -23,25 +23,13 @@
                         <ColumnDefinition Width="360"/>
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
-                    <Menu FontSize="16" Grid.ColumnSpan="3" Grid.Row="0">
-                        <MenuItem Header="Program">
-                            <MenuItem x:Name="menuZakazniciUkoncit" Header="Ukončit" Click="menuZakazniciUkoncit_Click"/>
-                        </MenuItem>
-                        <MenuItem Header="Data">
-                            <MenuItem Header="Vložit"/>
-                            <MenuItem Header="Editovat"/>
-                            <MenuItem Header="Smazat"/>
-                        </MenuItem>
-                    </Menu>
-                    <ListView x:Name="lsvMotorky" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="3">
+                    <ListView x:Name="lsvZakaznici" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="3">
                         <ListView.View>
                             <GridView>
-                                <GridViewColumn Header="Id" Width="40" DisplayMemberBinding="{Binding Id}"/>
-                                <GridViewColumn Header="Nazev" Width="80" DisplayMemberBinding="{Binding Nazev}"/>
-                                <GridViewColumn Header="Model" Width="100" DisplayMemberBinding="{Binding Model}"/>
-                                <GridViewColumn Header="Najezd" Width="60" DisplayMemberBinding="{Binding Najezd}"/>
-                                <GridViewColumn Header="Barva" Width="50" DisplayMemberBinding="{Binding Barva}"/>
-                                <GridViewColumn Header="Volny" Width="50" DisplayMemberBinding="{Binding Volny}"/>
+                                <GridViewColumn Header="Id" Width="40" DisplayMemberBinding="{Binding IdZ}"/>
+                                <GridViewColumn Header="Jmeno" Width="80" DisplayMemberBinding="{Binding Jmeno}"/>
+                                <GridViewColumn Header="Prijmeni" Width="90" DisplayMemberBinding="{Binding Prijmeni}"/>
+                                <GridViewColumn Header="Datum Narozeni" Width="100" DisplayMemberBinding="{Binding DatumNarozeniZ}"/>
                             </GridView>
                         </ListView.View>
                     </ListView>
@@ -49,28 +37,39 @@
                         <TabItem Header="Vložení">
                             <Grid Background="#FFE5E5E5">
                                 <StackPanel>
-                                    <TextBlock TextWrapping="Wrap" Margin="1" Text="Název"/>
-                                    <TextBox x:Name="txtNazevVlozit" TextWrapping="Wrap" Margin="1" Text="Honda"/>
-                                    <TextBlock TextWrapping="Wrap" Margin="1" Text="Model"/>
-                                    <TextBox x:Name="txtModelVlozit" TextWrapping="Wrap" Margin="1" Text="CBR 1000RR FireBlade"/>
-                                    <TextBlock TextWrapping="Wrap" Margin="1" Text="Najezd"/>
-                                    <TextBox x:Name="txtNajezdVlozit" TextWrapping="Wrap" Margin="1" Text="5000"/>
-                                    <TextBlock TextWrapping="Wrap" Margin="1" Text="Barva"/>
-                                    <TextBox x:Name="txtBarvaVlozit" TextWrapping="Wrap" Margin="1" Text="Cervena"/>
+                                    <TextBlock TextWrapping="Wrap" Margin="1" Text="Jmeno"/>
+                                    <TextBox x:Name="txtJmenoVlozitZ" TextWrapping="Wrap" Margin="1" Text="Petr"/>
+                                    <TextBlock TextWrapping="Wrap" Margin="1" Text="Prijmeni"/>
+                                    <TextBox x:Name="txtPrijmeniVlozitZ" TextWrapping="Wrap" Margin="1" Text="Stejskal"/>
+                                    <TextBlock TextWrapping="Wrap" Margin="1" Text="Datum narozeni"/>
+                                    <Calendar x:Name="CalVlozitZ"/>
+                                    <Button x:Name="btnVlozitZ" Content="Vložit" Margin="3"/>
                                 </StackPanel>
                             </Grid>
                         </TabItem>
                         <TabItem Header="Editace">
                             <Grid Background="#FFE5E5E5">
                                 <StackPanel>
-                                    <TextBlock TextWrapping="Wrap" Margin="1" Text="Název"/>
-                                    <TextBox x:Name="txtNazevEditace" TextWrapping="Wrap" Margin="1" Text="Honda"/>
-                                    <TextBlock TextWrapping="Wrap" Margin="1" Text="Model"/>
-                                    <TextBox x:Name="txtModelEditace" TextWrapping="Wrap" Margin="1" Text="CBR 1000RR FireBlade"/>
-                                    <TextBlock TextWrapping="Wrap" Margin="1" Text="Najezd"/>
-                                    <TextBox x:Name="txtNajezdEditace" TextWrapping="Wrap" Margin="1" Text="5000"/>
-                                    <TextBlock TextWrapping="Wrap" Margin="1" Text="Barva"/>
-                                    <TextBox x:Name="txtBarvaEditace" TextWrapping="Wrap" Margin="1" Text="Cervena"/>
+                                    <TextBlock TextWrapping="Wrap" Margin="1" Text="Jmeno"/>
+                                    <TextBox x:Name="txtJmenoEditaceZ" TextWrapping="Wrap" Margin="1" Text=""/>
+                                    <TextBlock TextWrapping="Wrap" Margin="1" Text="Prijmeni"/>
+                                    <TextBox x:Name="txtPrijmeniEditaceZ" TextWrapping="Wrap" Margin="1" Text=""/>
+                                    <TextBlock TextWrapping="Wrap" Margin="1" Text="Datum narozeni"/>
+                                    <Calendar x:Name="CalEditaceZ"/>
+                                    <Button x:Name="btnEditovatZ" Content="Editovat" Margin="3"/>
+                                </StackPanel>
+                            </Grid>
+                        </TabItem>
+                        <TabItem Header="Smazani">
+                            <Grid Background="#FFE5E5E5">
+                                <StackPanel>
+                                    <TextBlock TextWrapping="Wrap" Margin="1" Text="Jmeno"/>
+                                    <TextBox x:Name="txtJmenoSmazaniZ" TextWrapping="Wrap" Margin="1" Text=""/>
+                                    <TextBlock TextWrapping="Wrap" Margin="1" Text="Prijmeni"/>
+                                    <TextBox x:Name="txtPrijmeniSmazaniZ" TextWrapping="Wrap" Margin="1" Text=""/>
+                                    <TextBlock TextWrapping="Wrap" Margin="1" Text="Datum narozeni"/>
+                                    <Calendar x:Name="CalSmazatZ"/>
+                                    <Button x:Name="btnSmazaniZ" Content="Smazat" Margin="3"/>
                                 </StackPanel>
                             </Grid>
                         </TabItem>
@@ -79,6 +78,66 @@
             </TabItem>
             <TabItem Header="Motorky">
                 <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="161.088"/>
+                        <ColumnDefinition Width="360"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <ListView x:Name="lsvMotorky" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="3">
+                        <ListView.View>
+                            <GridView>
+                                <GridViewColumn Header="Id" Width="40" DisplayMemberBinding="{Binding IdM}"/>
+                                <GridViewColumn Header="Nazev" Width="80" DisplayMemberBinding="{Binding Nazev}"/>
+                                <GridViewColumn Header="Model" Width="90" DisplayMemberBinding="{Binding Model}"/>
+                                <GridViewColumn Header="Barva" Width="100" DisplayMemberBinding="{Binding Barva}"/>
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
+                    <TabControl Grid.Column="2" Grid.Row="1">
+                        <TabItem Header="Vložení">
+                            <Grid Background="#FFE5E5E5">
+                                <StackPanel>
+                                    <TextBlock TextWrapping="Wrap" Margin="1" Text="Jmeno"/>
+                                    <TextBox x:Name="txtnazevVlozeniM" TextWrapping="Wrap" Margin="1" Text="Petr"/>
+                                    <TextBlock TextWrapping="Wrap" Margin="1" Text="Prijmeni"/>
+                                    <TextBox x:Name="txtModelVlozeniM" TextWrapping="Wrap" Margin="1" Text="Stejskal"/>
+                                    <TextBlock TextWrapping="Wrap" Margin="1" Text="Datum narozeni"/>
+                                    <TextBox x:Name="txtBarvaVlozeniM" TextWrapping="Wrap" Margin="1" Text="Stejskal"/>
+                                    <Button x:Name="btnVlozeniM" Content="Vložit" Margin="3"/>
+                                </StackPanel>
+                            </Grid>
+                        </TabItem>
+                        <TabItem Header="Editace">
+                            <Grid Background="#FFE5E5E5">
+                                <StackPanel>
+                                    <TextBlock TextWrapping="Wrap" Margin="1" Text="Jmeno"/>
+                                    <TextBox x:Name="txtnazevEditaceM" TextWrapping="Wrap" Margin="1" Text="Petr"/>
+                                    <TextBlock TextWrapping="Wrap" Margin="1" Text="Prijmeni"/>
+                                    <TextBox x:Name="txtModelEditaceM" TextWrapping="Wrap" Margin="1" Text="Stejskal"/>
+                                    <TextBlock TextWrapping="Wrap" Margin="1" Text="Datum narozeni"/>
+                                    <TextBox x:Name="txtBarvaEditaceM" TextWrapping="Wrap" Margin="1" Text="Stejskal"/>
+                                    <Button x:Name="btnEditaceM" Content="Vložit" Margin="3"/>
+                                </StackPanel>
+                            </Grid>
+                        </TabItem>
+                        <TabItem Header="Smazani">
+                            <Grid Background="#FFE5E5E5">
+                                <StackPanel>
+                                    <TextBlock TextWrapping="Wrap" Margin="1" Text="Jmeno"/>
+                                    <TextBox x:Name="txtNazevSmazaniM" TextWrapping="Wrap" Margin="1" Text="Petr"/>
+                                    <TextBlock TextWrapping="Wrap" Margin="1" Text="Prijmeni"/>
+                                    <TextBox x:Name="txtModelSmazaniM" TextWrapping="Wrap" Margin="1" Text="Stejskal"/>
+                                    <TextBlock TextWrapping="Wrap" Margin="1" Text="Datum narozeni"/>
+                                    <TextBox x:Name="txtBarvaSmazaniM" TextWrapping="Wrap" Margin="1" Text="Stejskal"/>
+                                    <Button x:Name="btnSmazaniM" Content="Vložit" Margin="3"/>
+                                </StackPanel>
+                            </Grid>
+                        </TabItem>
+                    </TabControl>
                 </Grid>
             </TabItem>
             <TabItem Header="Vypůjčky" IsSelected="True">
@@ -140,7 +199,7 @@
                         <TabItem Header="Vložení a Editace">
                             <Grid Background="#FFE5E5E5">
                                 <StackPanel>
-                                    <TextBlock TextWrapping="Wrap" Margin="1" Text="Čtenaři"/>
+                                    <TextBlock TextWrapping="Wrap" Margin="1" Text="Zakaznici"/>
                                     <ComboBox x:Name="cmbZakazniciFiltr" ItemsSource="{Binding Zakaznici}" DisplayMemberPath="Prijmeni" SelectionChanged="cmbZakazniciFiltr_SelectionChanged">
 
                                     </ComboBox>
@@ -158,13 +217,13 @@
                                         <ListView.View>
                                             <GridView>
                                                 <GridViewColumn Header="Id" Width="30" DisplayMemberBinding="{Binding Id}"/>
-                                                <GridViewColumn Header="nazev" Width="30" DisplayMemberBinding="{Binding nazev}"/>
-                                                <GridViewColumn Header="Model" Width="30" DisplayMemberBinding="{Binding Model}"/>
-                                                <GridViewColumn Header="Barva" Width="30" DisplayMemberBinding="{Binding Barva}"/>
+                                                <GridViewColumn Header="nazev" Width="70" DisplayMemberBinding="{Binding nazev}"/>
+                                                <GridViewColumn Header="Model" Width="70" DisplayMemberBinding="{Binding Model}"/>
+                                                <GridViewColumn Header="Barva" Width="60" DisplayMemberBinding="{Binding Barva}"/>
                                             </GridView>
                                         </ListView.View>
                                     </ListView>
-                                    <TextBlock Margin="1" Text="Vypůjčeno            Vráceno" TextAlignment="Justify"/>
+                                    <TextBlock Margin="1" Text="Vypůjčeno                                         Vráceno" TextAlignment="Justify"/>
                                     <StackPanel Orientation="Horizontal">
                                         <Calendar x:Name="CalVypujceno"/>
                                         <Calendar x:Name="CalVraceno"/>

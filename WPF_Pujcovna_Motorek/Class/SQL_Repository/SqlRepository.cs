@@ -24,15 +24,14 @@ namespace WPF_Pujcovna_Motorek.Class.SQL_Repository
             {
                 using(SqlCommand cmd = new SqlCommand("", conn))
                 {
-                    string text_hledani = hledani == 0 ? "" : $"where Vypujcky.IdZakaznik = {hledani} ";
+                    string text_hledani = hledani == 0 ? "" : $"where Vypujcky.Id_Zakaznik = {hledani} ";
                     string jak_Tridit = !sestupne ? "asc" : "desc";
-                    cmd.CommandText = $"" +
+                    cmd.CommandText = 
                         $"select Vypujcky.Id as VId, Jmeno, Prijmeni, Motorka.Id as MId, Zakaznik.Id as ZId, Motorka.Nazev as MNazev, " +
-                        $"Motorka.model as MModel," +
                         $"Vypujcky.Pujceno as VPujceno, " +
-                        $"Vypujcky.Vraceno as VVraceno" +
+                        $"Vypujcky.Vraceno as VVraceno " +
                         $"from Vypujcky " +
-                        $"inner join Zakaznik on (Vypujcky.Id_Zakznik = Zakaznik.Id) " +
+                        $"inner join Zakaznik on (Vypujcky.Id_Zakaznik = Zakaznik.Id) " +
                         $"inner join Motorka on (Vypujcky.Id_Motorka = Motorka.Id) " +
                         $"{text_hledani}" +
                         $"order by {sloupecTrideni} {jak_Tridit};";
@@ -102,7 +101,6 @@ namespace WPF_Pujcovna_Motorek.Class.SQL_Repository
                                 dr["Nazev"].ToString(),
                                 dr["Model"].ToString(),
                                 int.Parse(dr["Najezd"].ToString()),
-                                int.Parse(dr["MaxNadrz"].ToString()),
                                 dr["Barva"].ToString()
                                 ));
                         }
