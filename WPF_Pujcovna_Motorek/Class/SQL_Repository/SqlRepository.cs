@@ -20,16 +20,16 @@ namespace WPF_Pujcovna_Motorek.Class.SQL_Repository
         public List<Vypujcka> NactiVypujcky(string sloupecTrideni, bool sestupne, int hledani)
         {
             List<Vypujcka> vypujcka = new List<Vypujcka>();
-            using (SqlConnection conn = new SqlConnection())
+            using (SqlConnection conn = new SqlConnection(Connection_String))
             {
                 using(SqlCommand cmd = new SqlCommand("", conn))
                 {
                     string text_hledani = hledani == 0 ? "" : $"where Vypujcky.IdZakaznik = {hledani} ";
                     string jak_Tridit = !sestupne ? "asc" : "desc";
                     cmd.CommandText = $"" +
-                        $"select Vypujcky.Id as VId, Jmeno, Prijmeni, Motorka.Id as MId, Zakaznik.Id as ZId, Motorka.Nazev as MNazev," +
-                        $" Motorka.model as MModel, Motorka.Najezd as MNajezd, Motorka.Aktualni_Nadrz as MAkt_nadrz, " +
-                        $"Motorka.RokVyroby as MRok, Motorka.Barva as MBarva, Vypujcky.Pujceno as VPujceno, " +
+                        $"select Vypujcky.Id as VId, Jmeno, Prijmeni, Motorka.Id as MId, Zakaznik.Id as ZId, Motorka.Nazev as MNazev, " +
+                        $"Motorka.model as MModel," +
+                        $"Vypujcky.Pujceno as VPujceno, " +
                         $"Vypujcky.Vraceno as VVraceno" +
                         $"from Vypujcky " +
                         $"inner join Zakaznik on (Vypujcky.Id_Zakznik = Zakaznik.Id) " +

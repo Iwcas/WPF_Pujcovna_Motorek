@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WPF_Pujcovna_Motorek"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="450" Width="800" Loaded="Window_Loaded">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="287*"/>
@@ -88,7 +88,7 @@
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="850"/>
+                        <ColumnDefinition Width="auto"/>
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
                     <Menu FontSize="16" Grid.ColumnSpan="3" Grid.Row="0">
@@ -108,27 +108,27 @@
                                         <GridViewColumnHeader x:Name="colId" Click="colId_Click">Id</GridViewColumnHeader>
                                     </GridViewColumn.Header>
                                 </GridViewColumn>
-                                <GridViewColumn Width="120" DisplayMemberBinding="{Binding JmenoZakaznika}">
+                                <GridViewColumn Width="70" DisplayMemberBinding="{Binding JmenoZakaznika}">
                                     <GridViewColumn.Header>
                                         <GridViewColumnHeader x:Name="ColJmeno" Click="ColJmeno_Click">Jmeno</GridViewColumnHeader>
                                     </GridViewColumn.Header>
                                 </GridViewColumn>
-                                <GridViewColumn Width="120" DisplayMemberBinding="{Binding PrijmeniZakaznika}">
+                                <GridViewColumn Width="70" DisplayMemberBinding="{Binding PrijmeniZakaznika}">
                                     <GridViewColumn.Header>
                                         <GridViewColumnHeader x:Name="ColPrijmeni" Click="ColPrijmeni_Click">Prijmeni</GridViewColumnHeader>
                                     </GridViewColumn.Header>
                                 </GridViewColumn>
-                                <GridViewColumn Width="120" DisplayMemberBinding="{Binding MotorkaZakaznika}">
+                                <GridViewColumn Width="80" DisplayMemberBinding="{Binding MotorkaZakaznika}">
                                     <GridViewColumn.Header>
                                         <GridViewColumnHeader x:Name="ColMotorka" Click="ColMotorka_Click">Motorka</GridViewColumnHeader>
                                     </GridViewColumn.Header>
                                 </GridViewColumn>
-                                <GridViewColumn Width="120" DisplayMemberBinding="{Binding DatumVypujceni, StringFormat={}{0:dd. MM. yyyy}}">
+                                <GridViewColumn Width="60" DisplayMemberBinding="{Binding DatumVypujceni, StringFormat={}{0:dd. MM. yyyy}}">
                                     <GridViewColumn.Header>
                                         <GridViewColumnHeader x:Name="ColPujceno" Click="ColMotorka_Click">Pujceno</GridViewColumnHeader>
                                     </GridViewColumn.Header>
                                 </GridViewColumn>
-                                <GridViewColumn Width="120" DisplayMemberBinding="{Binding DatumVraceni, StringFormat={}{0:dd. MM. yyyy}}">
+                                <GridViewColumn Width="60" DisplayMemberBinding="{Binding DatumVraceni, StringFormat={}{0:dd. MM. yyyy}}">
                                     <GridViewColumn.Header>
                                         <GridViewColumnHeader x:Name="ColVraceni" Click="ColMotorka_Click">Vraceno</GridViewColumnHeader>
                                     </GridViewColumn.Header>
