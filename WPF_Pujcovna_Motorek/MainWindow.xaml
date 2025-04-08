@@ -154,10 +154,6 @@
                         <MenuItem Header="Program">
                             <MenuItem x:Name="menuVypujckyUkoncit" Header="Ukončit" Click="menuVypujckyUkoncit_Click"/>
                         </MenuItem>
-                        <MenuItem Header="Data">
-                            <MenuItem Header="Vypůjčit Motorku" Click="MenuItem_Click"/>
-                            <MenuItem Header="Editovat Vypůjčku" Click="MenuItem_Click_1"/>
-                        </MenuItem>
                     </Menu>
                     <ListView x:Name="lsvVypujcky" Grid.Column="0" Grid.Row="1" SelectionChanged="lsvVypujcky_SelectionChanged">
                         <ListView.View>
@@ -167,27 +163,32 @@
                                         <GridViewColumnHeader x:Name="colId" Click="colId_Click">Id</GridViewColumnHeader>
                                     </GridViewColumn.Header>
                                 </GridViewColumn>
-                                <GridViewColumn Width="70" DisplayMemberBinding="{Binding JmenoZakaznika}">
+                                <GridViewColumn Width="70" DisplayMemberBinding="{Binding Jmeno_Zakaznika}">
                                     <GridViewColumn.Header>
                                         <GridViewColumnHeader x:Name="ColJmeno" Click="ColJmeno_Click">Jmeno</GridViewColumnHeader>
                                     </GridViewColumn.Header>
                                 </GridViewColumn>
-                                <GridViewColumn Width="70" DisplayMemberBinding="{Binding PrijmeniZakaznika}">
+                                <GridViewColumn Width="70" DisplayMemberBinding="{Binding Prijmeni_Zakaznika}">
                                     <GridViewColumn.Header>
                                         <GridViewColumnHeader x:Name="ColPrijmeni" Click="ColPrijmeni_Click">Prijmeni</GridViewColumnHeader>
                                     </GridViewColumn.Header>
                                 </GridViewColumn>
-                                <GridViewColumn Width="80" DisplayMemberBinding="{Binding MotorkaZakaznika}">
+                                <GridViewColumn Width="80" DisplayMemberBinding="{Binding Nazev_Motorky}">
                                     <GridViewColumn.Header>
-                                        <GridViewColumnHeader x:Name="ColMotorka" Click="ColMotorka_Click">Motorka</GridViewColumnHeader>
+                                        <GridViewColumnHeader x:Name="ColNazev" Click="ColMotorka_Click">Nazev</GridViewColumnHeader>
                                     </GridViewColumn.Header>
                                 </GridViewColumn>
-                                <GridViewColumn Width="60" DisplayMemberBinding="{Binding DatumVypujceni, StringFormat={}{0:dd. MM. yyyy}}">
+                                <GridViewColumn Width="80" DisplayMemberBinding="{Binding Model_Motorky}">
+                                    <GridViewColumn.Header>
+                                        <GridViewColumnHeader x:Name="ColModel" Click="ColMotorka_Click">Model</GridViewColumnHeader>
+                                    </GridViewColumn.Header>
+                                </GridViewColumn>
+                                <GridViewColumn Width="80" DisplayMemberBinding="{Binding Pujceno, StringFormat={}{0:dd. MM. yyyy}}">
                                     <GridViewColumn.Header>
                                         <GridViewColumnHeader x:Name="ColPujceno" Click="ColMotorka_Click">Pujceno</GridViewColumnHeader>
                                     </GridViewColumn.Header>
                                 </GridViewColumn>
-                                <GridViewColumn Width="60" DisplayMemberBinding="{Binding DatumVraceni, StringFormat={}{0:dd. MM. yyyy}}">
+                                <GridViewColumn Width="80" DisplayMemberBinding="{Binding Vraceno, StringFormat={}{0:dd. MM. yyyy}}">
                                     <GridViewColumn.Header>
                                         <GridViewColumnHeader x:Name="ColVraceni" Click="ColMotorka_Click">Vraceno</GridViewColumnHeader>
                                     </GridViewColumn.Header>
@@ -200,9 +201,6 @@
                             <Grid Background="#FFE5E5E5">
                                 <StackPanel>
                                     <TextBlock TextWrapping="Wrap" Margin="1" Text="Zakaznici"/>
-                                    <ComboBox x:Name="cmbZakazniciFiltr" ItemsSource="{Binding Zakaznici}" DisplayMemberPath="Prijmeni" SelectionChanged="cmbZakazniciFiltr_SelectionChanged">
-
-                                    </ComboBox>
                                     <ListView x:Name="lsvZakazniciVypujcky" MaxHeight="300">
                                         <ListView.View>
                                             <GridView>
@@ -217,7 +215,7 @@
                                         <ListView.View>
                                             <GridView>
                                                 <GridViewColumn Header="Id" Width="30" DisplayMemberBinding="{Binding Id}"/>
-                                                <GridViewColumn Header="nazev" Width="70" DisplayMemberBinding="{Binding nazev}"/>
+                                                <GridViewColumn Header="nazev" Width="70" DisplayMemberBinding="{Binding Nazev}"/>
                                                 <GridViewColumn Header="Model" Width="70" DisplayMemberBinding="{Binding Model}"/>
                                                 <GridViewColumn Header="Barva" Width="60" DisplayMemberBinding="{Binding Barva}"/>
                                             </GridView>

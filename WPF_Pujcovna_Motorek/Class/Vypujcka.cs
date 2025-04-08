@@ -16,6 +16,7 @@ namespace WPF_Pujcovna_Motorek.Class
         public string Jmeno_Zakaznika { get; set; }
         public string Prijmeni_Zakaznika { get; set; }
         public string Nazev_Motorky { get; set; }
+        public string Model_Motorky { get; set; }
 
         public Vypujcka(int id, int id_Zakaznik, int id_Motorka, DateTime pujceno, DateTime? vraceno)
         {
@@ -26,11 +27,12 @@ namespace WPF_Pujcovna_Motorek.Class
             Vraceno = vraceno;
         }
 
-        public Vypujcka(int id, int id_Zakaznik, int id_Motorka, DateTime pujceno, DateTime? vraceno, string jmeno_Zakaznika, string prijmeni_Zakaznika, string nazev_Motorky) : this(id, id_Zakaznik, id_Motorka, pujceno, vraceno)
+        public Vypujcka(int id, int id_Zakaznik, int id_Motorka, DateTime pujceno, DateTime? vraceno, string jmeno_Zakaznika, string prijmeni_Zakaznika, string nazev_Motorky, string model_Motorky) : this(id, id_Zakaznik, id_Motorka, pujceno, vraceno)
         {
             Jmeno_Zakaznika = jmeno_Zakaznika;
             Prijmeni_Zakaznika = prijmeni_Zakaznika;
             Nazev_Motorky = nazev_Motorky;
+            Model_Motorky = model_Motorky;
         }
     }
 }

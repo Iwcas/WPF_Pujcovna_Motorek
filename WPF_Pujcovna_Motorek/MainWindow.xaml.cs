@@ -37,11 +37,6 @@ namespace WPF_Pujcovna_Motorek
             List<Zakaznik> Zakaznik = new SqlRepository(cs).NactiZakaznika("", true, "");
             List<Zakaznik> zakaznikLsv = Zakaznik.Where(c => c.Id != 0).ToList();
             lsvZakazniciVypujcky.ItemsSource = zakaznikLsv;
-            cmbZakazniciFiltr.ItemsSource = Zakaznik;
-            if(Zakaznik.Count > 0)
-            {
-                cmbZakazniciFiltr.SelectedIndex = 0;
-            }
         }
         public void ZobrazMotorky()
         {
@@ -50,27 +45,30 @@ namespace WPF_Pujcovna_Motorek
         }
         private void colId_Click(object sender, RoutedEventArgs e)
         {
-
+            sloupecTrideni = "Vypujcky.Id";
+            sestupne = !sestupne;
+            ZobrazVypujcky(sloupecTrideni, sestupne, hledani);
         }
 
         private void ColJmeno_Click(object sender, RoutedEventArgs e)
         {
-
+            sloupecTrideni = "Ctenari.Jmeno";
+            sestupne = !sestupne;
+            ZobrazVypujcky(sloupecTrideni, sestupne, hledani);
         }
 
         private void ColPrijmeni_Click(object sender, RoutedEventArgs e)
         {
-
+            sloupecTrideni = "Ctenari.Prijmeni";
+            sestupne = !sestupne;
+            ZobrazVypujcky(sloupecTrideni, sestupne, hledani);
         }
 
         private void ColMotorka_Click(object sender, RoutedEventArgs e)
         {
-
-        }
-
-        private void cmbZakazniciFiltr_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
+            sloupecTrideni = "Motorka.Nazev";
+            sestupne = !sestupne;
+            ZobrazVypujcky(sloupecTrideni, sestupne, hledani);
         }
 
         private void menuZakazniciUkoncit_Click(object sender, RoutedEventArgs e)
@@ -80,25 +78,15 @@ namespace WPF_Pujcovna_Motorek
 
         private void menuVypujckyUkoncit_Click(object sender, RoutedEventArgs e)
         {
-
-        }
-
-        private void MenuItem_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void MenuItem_Click_1(object sender, RoutedEventArgs e)
-        {
-
+            Close();
         }
 
         private void lsvVypujcky_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if(lsvVypujcky.SelectedItems.Count > 0)
             {
-                Vypujcka vypujcka = (Vypujcka)lsvVypujcky.SelectedItems;
-                foreach(Zakaznik zakaznik in lsvVypujcky.Items)
+                Vypujcka vypujcka = (Vypujcka)lsvVypujcky.SelectedItem;
+                foreach(Zakaznik zakaznik in lsvZakazniciVypujcky.Items)
                 {
                     if(zakaznik.Id == vypujcka.Id_Zakaznik)
                     {
@@ -122,25 +110,71 @@ namespace WPF_Pujcovna_Motorek
 
         private void BtnEditovatVypujcku_Click(object sender, RoutedEventArgs e)
         {
+            if (lsvZakazniciVypujcky.SelectedItems.Count > 0 && lsvMotorkyVypujcky.SelectedItems.Count > 0 &&
+                lsvVypujcky.SelectedItems.Count > 0)
+            {
+                SqlRepository sqlRepository = new SqlRepository(cs);
+                Vypujcka vypujcka = (Vypujcka)lsvVypujcky.SelectedItem;
+                Zakaznik ctenar = (Zakaznik)lsvZakazniciVypujcky.SelectedItem;
+                Motorka kniha = (Motorka)lsvMotorkyVypujcky.SelectedItem;
+                DateTime pujceno = CalVypujceno.SelectedDate == null ?
+                    DateTime.Now :
+                    (DateTime)CalVypujceno.SelectedDate;
+                DateTime vraceno = CalVraceno.SelectedDate == null ?
+                    DateTime.Now :
+                    (DateTime)CalVraceno.SelectedDate;
 
+                sqlRepository.EditovatMotorku(vypujcka.Id,
+                    ctenar.Id,
+                    kniha.Id,
+                    pujceno,
+                    vraceno);
+                ZobrazVypujcky(sloupecTrideni, sestupne, hledani);
+            }
+            else
+            {
+                MessageBox.Show("Vyberte výpůjčku, Motorku a Zakaznika");
+            }
         }
 
         private void BtnVlozitVypujcku_Click(object sender, RoutedEventArgs e)
         {
-            if(lsvZakazniciVypujcky.SelectedItems.Count > 0 && lsvMotorkyVypujcky.SelectedItems.Count > 0)
+            if (lsvZakazniciVypujcky.SelectedItems.Count > 0 && lsvMotorkyVypujcky.SelectedItems.Count > 0)
             {
                 SqlRepository sqlRepository = new SqlRepository(cs);
-                Zakaznik zakaznik = (Zakaznik)lsvZakazniciVypujcky.SelectedItems;
+                Zakaznik zakaznik = (Zakaznik)lsvZakazniciVypujcky.SelectedItem;
+                Motorka motorka = (Motorka)lsvMotorkyVypujcky.SelectedItem;
+                int pocetPujcenych = 0;
+                foreach (Vypujcka vypujcka in lsvVypujcky.Items)
+                {
+                    pocetPujcenych += (vypujcka.Vraceno == null && vypujcka.Id_Motorka == motorka.Id) ? 1 : 0;
+                }
+                DateTime pujceno = DateTime.Now;
+                if (pocetPujcenych == 0)
+                {
+                    sqlRepository.VypujcitMotorku(
+                        int.Parse(zakaznik.Id.ToString()),
+                        int.Parse(motorka.Id.ToString()),
+                        pujceno);
+                    ZobrazVypujcky(sloupecTrideni, sestupne, hledani);
+                }
+                else
+                {
+                    MessageBox.Show($"Motorku {motorka.Nazev.Trim()} musíte nejdříve vrátit!!!");
+                }
+            }
+            else
+            {
+                MessageBox.Show("Vyberte Motorku a Zakaznika");
             }
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            Zakaznik zakaznik = (Zakaznik)cmbZakazniciFiltr.SelectedItem;
-            hledani = zakaznik != null ? zakaznik.Id : 0;
             ZobrazVypujcky(sloupecTrideni, sestupne, hledani);
             ZobrazZakaznika();
             ZobrazMotorky();
+            CalVraceno.SelectedDate = null;
         }
     }
 }

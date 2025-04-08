@@ -27,7 +27,7 @@ namespace WPF_Pujcovna_Motorek.Class.SQL_Repository
                     string text_hledani = hledani == 0 ? "" : $"where Vypujcky.Id_Zakaznik = {hledani} ";
                     string jak_Tridit = !sestupne ? "asc" : "desc";
                     cmd.CommandText = 
-                        $"select Vypujcky.Id as VId, Jmeno, Prijmeni, Motorka.Id as MId, Zakaznik.Id as ZId, Motorka.Nazev as MNazev, " +
+                        $"select Vypujcky.Id as VId, Jmeno, Prijmeni, Motorka.Id as MId, Zakaznik.Id as ZId, Motorka.Nazev as MNazev, Motorka.Model as MModel," +
                         $"Vypujcky.Pujceno as VPujceno, " +
                         $"Vypujcky.Vraceno as VVraceno " +
                         $"from Vypujcky " +
@@ -47,7 +47,10 @@ namespace WPF_Pujcovna_Motorek.Class.SQL_Repository
                                 !dr.IsDBNull("VVraceno") ? dr.GetDateTime("VVraceno") : null,
                                 dr["Jmeno"].ToString().Trim(),
                                 dr["Prijmeni"].ToString().Trim(),
-                                dr["MNazev"].ToString().Trim()));
+                                dr["MNazev"].ToString().Trim(),
+                                dr["MModel"].ToString().Trim()
+                                ));
+                            
                         }
                     }
                     conn.Close();
@@ -100,7 +103,6 @@ namespace WPF_Pujcovna_Motorek.Class.SQL_Repository
                                 int.Parse(dr["Id"].ToString()),
                                 dr["Nazev"].ToString(),
                                 dr["Model"].ToString(),
-                                int.Parse(dr["Najezd"].ToString()),
                                 dr["Barva"].ToString()
                                 ));
                         }
